@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, TrendingUp, Sparkles } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { productSpecs, testimonials } from '../mock';
+import { productSpecs } from '../mock';
 
 const Home = () => {
   return (
