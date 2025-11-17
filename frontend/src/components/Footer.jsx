@@ -70,10 +70,6 @@ const Footer = () => {
                 <Phone size={16} className="text-red-500" />
                 <span>{brandInfo.phone}</span>
               </li>
-              <li className="flex items-start space-x-2 text-gray-400 text-sm">
-                <MapPin size={16} className="text-red-500 mt-1" />
-                <span>Toledo, Ohio</span>
-              </li>
             </ul>
           </div>
         </div>
