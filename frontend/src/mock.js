@@ -17,18 +17,14 @@ export const productSpecs = {
   servingSize: "12 fl oz (355 ml)",
   servingsPerContainer: 1,
   packageSize: "6-pack",
-  calories: 170,
-  carbs: "17g",
-  fat: "0g",
-  protein: "0g",
   ingredients: ["Premium Vodka", "100% Real Cranberry Juice", "Natural Flavors"],
   features: [
     "Made with Premium Vodka",
     "100% Real Juice",
     "Non-Carbonated",
-    "Low in Calories",
     "TTB Approved",
-    "12oz Sleek Can"
+    "12oz Sleek Can",
+    "Premium Quality"
   ]
 };
 
