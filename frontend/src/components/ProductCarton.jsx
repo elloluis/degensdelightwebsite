@@ -9,9 +9,8 @@ const ProductCarton = ({ className = '' }) => {
         {/* Carton box */}
         <div className="bg-white rounded-lg shadow-2xl overflow-hidden border-4 border-gray-200">
           {/* Top red band */}
-          <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 p-4 flex justify-between items-center">
+          <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 p-4 text-center">
             <span className="text-white font-bold text-sm">NON-CARBONATED</span>
-            <span className="text-white font-bold text-sm">LOW IN CALORIES</span>
           </div>
           
           {/* Middle white section with logo */}
