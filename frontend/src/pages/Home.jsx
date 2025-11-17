@@ -27,15 +27,15 @@ const Home = () => {
               Miami-based premium cranberry vodka RTD crafted for the modern drinker
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/product">
+              <Link to="/shop">
                 <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8">
-                  Explore Product
+                  Shop Now
                   <ArrowRight className="ml-2" size={20} />
                 </Button>
               </Link>
-              <Link to="/distributors">
+              <Link to="/product">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8">
-                  For Distributors
+                  Learn More
                 </Button>
               </Link>
             </div>
