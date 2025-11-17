@@ -37,57 +37,6 @@ const Product = () => {
         </div>
       </section>
 
-      {/* Nutritional Information */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Nutritional Facts</h2>
-            <Card className="p-8 border-4 border-black">
-              <div className="border-b-8 border-black pb-2 mb-4">
-                <h3 className="text-3xl font-bold">Serving Facts</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between border-b border-gray-300 pb-2">
-                  <span className="font-semibold">Serving Size</span>
-                  <span>{productSpecs.servingSize}</span>
-                </div>
-                <div className="flex justify-between border-b border-gray-300 pb-2">
-                  <span className="font-semibold">Servings per Container</span>
-                  <span>{productSpecs.servingsPerContainer}</span>
-                </div>
-                <div className="border-t-4 border-black pt-4 mt-4">
-                  <div className="flex justify-between text-xl font-bold mb-4">
-                    <span>Amount Per Serving</span>
-                  </div>
-                  <div className="flex justify-between border-b border-gray-300 pb-2">
-                    <span className="font-bold text-lg">Calories</span>
-                    <span className="font-bold text-lg">{productSpecs.calories}</span>
-                  </div>
-                </div>
-                <div className="space-y-2 pt-2">
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Alcohol by Volume</span>
-                    <span className="font-bold">{productSpecs.abv}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Total Carbohydrates</span>
-                    <span className="font-bold">{productSpecs.carbs}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Total Fat</span>
-                    <span className="font-bold">{productSpecs.fat}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Protein</span>
-                    <span className="font-bold">{productSpecs.protein}</span>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* 6-Pack Carton Showcase */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
