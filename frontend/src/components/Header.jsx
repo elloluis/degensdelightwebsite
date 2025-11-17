@@ -6,7 +6,6 @@ import { Button } from './ui/button';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { getCartCount, setIsCartOpen } = useCart();
 
   const navLinks = [
     { path: '/', label: 'Home' },
