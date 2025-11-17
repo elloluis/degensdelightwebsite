@@ -2,11 +2,12 @@
 
 export const brandInfo = {
   name: "Degen's Delight",
-  tagline: "Where Tart Meets Smooth",
+  tagline: "Drink Degen's Delight",
   description: "A non-carbonated cranberry vodka RTD that perfectly balances bold cranberry richness with the crisp kick of premium vodka.",
   email: "info@degensdelight.com",
   phone: "786-449-0930",
-  manufacturer: "Maumee Bay Brewing"
+  manufacturer: "Maumee Bay Brewing",
+  location: "Miami, Florida"
 };
 
 export const productSpecs = {
