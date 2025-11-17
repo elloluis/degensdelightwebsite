@@ -5,8 +5,8 @@ export const brandInfo = {
   tagline: "Where Tart Meets Smooth",
   description: "A non-carbonated cranberry vodka RTD that perfectly balances bold cranberry richness with the crisp kick of premium vodka.",
   email: "info@degensdelight.com",
-  phone: "1-800-DEGENS",
-  manufacturer: "Maumee Bay Brewing, Toledo, Ohio"
+  phone: "786-449-0930",
+  manufacturer: "Maumee Bay Brewing"
 };
 
 export const productSpecs = {
