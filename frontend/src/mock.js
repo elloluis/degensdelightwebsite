@@ -40,8 +40,7 @@ export const products = [
     stock: 100,
     specs: {
       size: "12 fl oz (355ml)",
-      abv: "5%",
-      calories: 170
+      abv: "5%"
     }
   },
   {
