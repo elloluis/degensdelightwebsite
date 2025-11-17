@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card } from '../components/ui/card';
 import ProductLogo from '../components/ProductLogo';
-import { brandStory } from '../mock';
-import { Sparkles, Droplets, Award } from 'lucide-react';
+import { brandStory, founderBio, brandInfo } from '../mock';
+import { Sparkles, Droplets, Award, MapPin, User } from 'lucide-react';
 
 const About = () => {
   return (
