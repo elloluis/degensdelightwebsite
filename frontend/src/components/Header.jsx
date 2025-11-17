@@ -47,8 +47,19 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Cart and CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative text-white hover:text-red-500 transition-colors"
+            >
+              <ShoppingCart size={24} />
+              {getCartCount() > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {getCartCount()}
+                </span>
+              )}
+            </button>
             <Link to="/distributors">
               <Button className="bg-red-600 hover:bg-red-700 text-white">
                 Become a Distributor
