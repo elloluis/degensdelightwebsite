@@ -78,16 +78,6 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
-              <button
-                onClick={() => {
-                  setIsCartOpen(true);
-                  setIsMenuOpen(false);
-                }}
-                className="text-left text-sm font-medium text-white hover:text-red-500 transition-colors flex items-center"
-              >
-                <ShoppingCart size={18} className="mr-2" />
-                Cart ({getCartCount()})
-              </button>
               <Link to="/distributors" onClick={() => setIsMenuOpen(false)}>
                 <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
                   Become a Distributor
