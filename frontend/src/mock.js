@@ -129,17 +129,3 @@ export const mockAgeVerification = (isOver21) => {
     }, 500);
   });
 };
-
-export const mockCheckout = (orderData) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('Order submitted:', orderData);
-      const orderNumber = 'DD' + Math.random().toString(36).substr(2, 9).toUpperCase();
-      resolve({ 
-        success: true, 
-        orderNumber,
-        message: `Order confirmed! Your order number is ${orderNumber}. You will receive a confirmation email shortly.` 
-      });
-    }, 2000);
-  });
-};
