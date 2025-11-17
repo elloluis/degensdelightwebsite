@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { getCartCount, setIsCartOpen } = useCart();
 
   const navLinks = [
     { path: '/', label: 'Home' },
