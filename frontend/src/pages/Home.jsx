@@ -21,10 +21,10 @@ const Home = () => {
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              Where Tart Meets <span className="text-red-500">Smooth</span>
+              Drink <span className="text-red-500">Degen's Delight</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-8">
-              A non-carbonated cranberry vodka RTD crafted for the modern drinker
+              Miami-based premium cranberry vodka RTD crafted for the modern drinker
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/product">
