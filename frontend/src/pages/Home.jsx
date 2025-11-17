@@ -62,7 +62,7 @@ const Home = () => {
                   {index === 0 && "Crafted with the finest vodka for authentic cocktail taste"}
                   {index === 1 && "No artificial flavors. Just pure cranberry juice."}
                   {index === 2 && "No bubbles, no bloat. Just smooth refreshment."}
-                  {index === 3 && "Only 170 calories per can - guilt-free indulgence."}
+                  {index === 3 && "TTB approved and ready for nationwide distribution."}
                   {index === 4 && "Fully compliant and ready for distribution."}
                   {index === 5 && "Premium packaging in a convenient format."}
                 </p>
