@@ -28,68 +28,6 @@ export const productSpecs = {
   ]
 };
 
-// E-commerce products
-export const products = [
-  {
-    id: 'single-can',
-    name: "Degen's Delight Single Can",
-    description: "12 fl oz cranberry vodka RTD. Perfect for trying our premium non-carbonated cocktail.",
-    price: 4.99,
-    image: "/can-design.pdf",
-    category: "single",
-    stock: 100,
-    specs: {
-      size: "12 fl oz (355ml)",
-      abv: "5%"
-    }
-  },
-  {
-    id: '6-pack',
-    name: "Degen's Delight 6-Pack",
-    description: "Six 12 fl oz cans. Our signature cranberry vodka cocktail in convenient packaging.",
-    price: 24.99,
-    image: "/carton-design.pdf",
-    category: "pack",
-    stock: 50,
-    specs: {
-      quantity: "6 cans",
-      size: "12 fl oz each",
-      abv: "5%",
-      savings: "Save $5.00"
-    }
-  },
-  {
-    id: '12-pack',
-    name: "Degen's Delight 12-Pack",
-    description: "Twelve 12 fl oz cans. Stock up and save on our premium cocktail.",
-    price: 44.99,
-    image: "/carton-design.pdf",
-    category: "pack",
-    stock: 30,
-    specs: {
-      quantity: "12 cans",
-      size: "12 fl oz each",
-      abv: "5%",
-      savings: "Save $15.00"
-    }
-  },
-  {
-    id: '24-pack',
-    name: "Degen's Delight Case (24-Pack)",
-    description: "Full case of 24 cans. Maximum savings for the ultimate Degen's experience.",
-    price: 79.99,
-    image: "/carton-design.pdf",
-    category: "case",
-    stock: 20,
-    specs: {
-      quantity: "24 cans",
-      size: "12 fl oz each",
-      abv: "5%",
-      savings: "Save $40.00"
-    }
-  }
-];
-
 export const brandStory = {
   cranberryHistory: "Cranberries, native to the wild landscapes of North America, were cherished by Indigenous peoples long before European settlers arrived. Treasured for their rich flavor, healing properties, and vibrant hues, these tantalizing berries have been cultivated in New England since the early 19th century. Today, cranberries and their tart crimson juice are essential ingredients for the discerning cocktail connoisseur.",
   vodkaHistory: "Vodka, a spirit born in the heart of Eastern Europe, has tantalized taste buds for centuries, with Russia and Poland both laying claim to its origins in the 8th or 9th century. What began as a healing elixir evolved into a refined indulgence, becoming the drink of choice by the 17th century as distillation techniques perfected its smooth, intoxicating allure.",
