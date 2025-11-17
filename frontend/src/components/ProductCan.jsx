@@ -27,7 +27,6 @@ const ProductCan = ({ className = '' }) => {
               <p className="text-sm font-bold text-black tracking-wide">& 100% REAL JUICE</p>
               <div className="h-2"></div>
               <p className="text-xs font-bold text-black tracking-wide">NON-CARBONATED</p>
-              <p className="text-xs font-bold text-black tracking-wide">LOW IN CALORIES</p>
               <div className="h-2"></div>
               <p className="text-xs text-gray-600">12 FL OZ | 355 mL</p>
             </div>
