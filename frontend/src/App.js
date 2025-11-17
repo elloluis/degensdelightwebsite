@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AgeVerification from './components/AgeVerification';
+import CartDrawer from './components/CartDrawer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Product from './pages/Product';
+import Shop from './pages/Shop';
+import Checkout from './pages/Checkout';
+import OrderConfirmation from './pages/OrderConfirmation';
 import Contact from './pages/Contact';
 import Distributors from './pages/Distributors';
 import { Toaster } from './components/ui/sonner';
