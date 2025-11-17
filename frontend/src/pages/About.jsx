@@ -149,6 +149,74 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* Founder Bio Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center mb-6">
+                <User className="text-red-600 mr-3" size={48} />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Meet the Founder</h2>
+              <div className="flex items-center justify-center space-x-4 text-xl text-gray-400">
+                <span>{founderBio.name}</span>
+                <span>•</span>
+                <span>{founderBio.title}</span>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 rounded-lg p-8 md:p-12 space-y-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <MapPin className="text-red-600" size={24} />
+                <p className="text-lg">
+                  <span className="font-semibold">{founderBio.location}</span> • <span className="text-gray-400">{founderBio.heritage} Heritage</span>
+                </p>
+              </div>
+
+              <div className="space-y-6 text-gray-300 leading-relaxed">
+                <p className="text-lg">
+                  {founderBio.story}
+                </p>
+
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">The Inception of Degen's Delight</h3>
+                  <p className="text-lg">
+                    {founderBio.inception}
+                  </p>
+                  <p className="text-lg mt-4">
+                    {founderBio.mission}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Strategic Growth and Market Entry</h3>
+                  <p className="text-lg">
+                    {founderBio.vision}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                  <div>
+                    <p className="text-3xl font-bold text-red-500">19</p>
+                    <p className="text-sm text-gray-400">Age When Founded</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold text-red-500">2026</p>
+                    <p className="text-sm text-gray-400">Florida Launch</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold text-red-500">Miami</p>
+                    <p className="text-sm text-gray-400">Based In</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
