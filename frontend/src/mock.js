@@ -147,10 +147,6 @@ export const faqs = [
     answer: "Unlike carbonated hard seltzers, Degen's Delight is a non-carbonated, still cocktail with a higher ABV (5%) and made with 100% real cranberry juice. It delivers a true bar-quality cocktail experience without the bloat."
   },
   {
-    question: "What's the calorie count?",
-    answer: "Each 12 fl oz can contains 170 calories, which is significantly lower than traditional mixed cocktails (300-500 calories) while still delivering authentic cocktail strength."
-  },
-  {
     question: "Where can I buy Degen's Delight?",
     answer: "We're currently available in select bars, nightclubs, and retail locations. Use our contact form to find the nearest location or inquire about distribution."
   },
