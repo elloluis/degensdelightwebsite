@@ -39,22 +39,16 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <CartProvider>
-          <Header />
-          <CartDrawer />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/order-confirmation" element={<OrderConfirmation />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/distributors" element={<Distributors />} />
-          </Routes>
-          <Footer />
-          <Toaster />
-        </CartProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/distributors" element={<Distributors />} />
+        </Routes>
+        <Footer />
+        <Toaster />
       </BrowserRouter>
     </div>
   );
