@@ -25,15 +25,9 @@ const Product = () => {
               <p className="text-xl text-gray-300 mb-8">
                 {productSpecs.type}
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-red-600 p-4 rounded-lg">
-                  <p className="text-4xl font-bold">{productSpecs.abv}</p>
-                  <p className="text-sm">Alcohol by Volume</p>
-                </div>
-                <div className="bg-gray-800 p-4 rounded-lg">
-                  <p className="text-4xl font-bold">{productSpecs.calories}</p>
-                  <p className="text-sm">Calories per Can</p>
-                </div>
+              <div className="bg-red-600 p-6 rounded-lg inline-block">
+                <p className="text-4xl font-bold">{productSpecs.abv}</p>
+                <p className="text-sm">Alcohol by Volume</p>
               </div>
             </div>
             <div>
