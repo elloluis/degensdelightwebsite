@@ -1,6 +1,4 @@
-import aiosmtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import requests
 import logging
 import os
 
@@ -13,7 +11,7 @@ async def send_email(
     plain_text_body: str = None
 ) -> bool:
     """
-    Send an email via Google Workspace SMTP.
+    Send an email via Mailgun API.
     
     Args:
         to_email: Recipient email address
@@ -24,40 +22,46 @@ async def send_email(
     Returns:
         True if successful, False otherwise
     """
-    smtp_host = os.environ.get('SMTP_HOST')
-    smtp_port = int(os.environ.get('SMTP_PORT', 587))
-    smtp_username = os.environ.get('SMTP_USERNAME')
-    smtp_password = os.environ.get('SMTP_PASSWORD')
+    api_key = os.environ.get('MAILGUN_API_KEY')
+    domain = os.environ.get('MAILGUN_DOMAIN')
+    from_email = os.environ.get('MAILGUN_FROM_EMAIL')
     
     try:
-        # Create multipart message supporting both HTML and plain text
-        message = MIMEMultipart("alternative")
-        message["Subject"] = subject
-        message["From"] = smtp_username
-        message["To"] = to_email
+        # Mailgun API endpoint
+        endpoint = f"https://api.mailgun.net/v3/{domain}/messages"
         
-        # Attach plain text part first (safest for compatibility)
+        # Prepare email data
+        data = {
+            "from": from_email,
+            "to": to_email,
+            "subject": subject,
+            "html": html_body
+        }
+        
+        # Add plain text if provided
         if plain_text_body:
-            text_part = MIMEText(plain_text_body, "plain")
-            message.attach(text_part)
+            data["text"] = plain_text_body
         
-        # Attach HTML part second (preferred by most email clients)
-        html_part = MIMEText(html_body, "html")
-        message.attach(html_part)
-        
-        # Send email using aiosmtplib (async)
-        await aiosmtplib.send(
-            message,
-            hostname=smtp_host,
-            port=smtp_port,
-            username=smtp_username,
-            password=smtp_password,
-            start_tls=True
+        # Send email via Mailgun API
+        response = requests.post(
+            endpoint,
+            auth=("api", api_key),
+            data=data,
+            timeout=10
         )
         
-        logger.info(f"Email sent successfully to {to_email}")
+        response.raise_for_status()
+        result = response.json()
+        
+        logger.info(f"Email sent successfully to {to_email}: {result.get('id')}")
         return True
         
+    except requests.exceptions.Timeout:
+        logger.error(f"Timeout sending email to {to_email}")
+        return False
+    except requests.exceptions.HTTPError as e:
+        logger.error(f"HTTP error sending email: {e.response.text}")
+        return False
     except Exception as e:
         logger.error(f"Failed to send email to {to_email}: {str(e)}")
         return False
