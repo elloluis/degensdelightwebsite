@@ -6,9 +6,12 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { useToast } from '../hooks/use-toast';
-import { mockDistributorSubmit, distributorBenefits } from '../mock';
+import { distributorBenefits } from '../mock';
 import { TrendingUp, Clock, DollarSign, Sparkles, Users, CheckCircle, Send } from 'lucide-react';
 import ProductCarton from '../components/ProductCarton';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const iconMap = {
   TrendingUp: TrendingUp,
