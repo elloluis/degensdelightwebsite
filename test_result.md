@@ -101,3 +101,75 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Set up MongoDB for form submissions, create FastAPI endpoints for contact and distributor forms, and connect frontend to backend."
+
+backend:
+  - task: "Contact form API endpoint"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Created POST /api/contact endpoint with ContactSubmission and ContactSubmissionCreate models. Stores submissions in contact_submissions collection. Also created GET /api/contact to retrieve all submissions."
+  
+  - task: "Distributor inquiry API endpoint"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Created POST /api/distributors endpoint with DistributorInquiry and DistributorInquiryCreate models. Stores inquiries in distributor_inquiries collection. Also created GET /api/distributors to retrieve all inquiries."
+
+frontend:
+  - task: "Contact form integration"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Contact.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Installed axios and updated Contact.jsx to call POST /api/contact endpoint. Removed mock function, form now sends real data to backend."
+  
+  - task: "Distributor form integration"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Distributors.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Updated Distributors.jsx to call POST /api/distributors endpoint. Removed mock function, form now sends real data to backend."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Contact form API endpoint"
+    - "Distributor inquiry API endpoint"
+    - "Contact form integration"
+    - "Distributor form integration"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "main"
+      message: "Backend integration complete. Created MongoDB models and API endpoints for both contact and distributor forms. Frontend now uses axios to submit form data to backend. All submissions are stored in MongoDB with UUID, timestamp, and all form fields. Please test both endpoints with various inputs including edge cases (empty optional fields, special characters, etc.)."
