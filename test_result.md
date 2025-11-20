@@ -188,8 +188,10 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus: []
-  stuck_tasks: []
+  current_focus:
+    - "Email notifications for form submissions"
+  stuck_tasks:
+    - "Email notifications for form submissions"
   test_all: false
   test_priority: "high_first"
 
