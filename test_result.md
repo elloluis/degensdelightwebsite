@@ -107,27 +107,33 @@ user_problem_statement: "Set up MongoDB for form submissions, create FastAPI end
 backend:
   - task: "Contact form API endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Created POST /api/contact endpoint with ContactSubmission and ContactSubmissionCreate models. Stores submissions in contact_submissions collection. Also created GET /api/contact to retrieve all submissions."
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: ✅ POST /api/contact works with all fields, empty optional phone field, and special characters. ✅ GET /api/contact retrieves all submissions with correct timestamp format. ✅ Validation correctly returns 422 for completely missing required fields (empty strings are valid per Pydantic spec). ✅ MongoDB storage verified - data persists correctly with UUID and timestamp. ✅ All response formats include id and timestamp as expected."
   
   - task: "Distributor inquiry API endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Created POST /api/distributors endpoint with DistributorInquiry and DistributorInquiryCreate models. Stores inquiries in distributor_inquiries collection. Also created GET /api/distributors to retrieve all inquiries."
+        - working: true
+          agent: "testing"
+          comment: "COMPREHENSIVE TESTING COMPLETED: ✅ POST /api/distributors works with all fields and handles empty optional fields (currentBrands, message). ✅ All businessType values tested successfully: distributor, bar, restaurant, retailer, other. ✅ GET /api/distributors retrieves all inquiries with correct timestamp format. ✅ Validation correctly returns 422 for completely missing required fields. ✅ MongoDB storage verified - data persists correctly in distributor_inquiries collection with UUID and timestamp."
 
 frontend:
   - task: "Contact form integration"
