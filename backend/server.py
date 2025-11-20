@@ -110,6 +110,56 @@ async def get_status_checks():
     
     return status_checks
 
+# Contact Form Endpoints
+@api_router.post("/contact", response_model=ContactSubmission)
+async def submit_contact_form(input: ContactSubmissionCreate):
+    contact_dict = input.model_dump()
+    contact_obj = ContactSubmission(**contact_dict)
+    
+    # Convert to dict and serialize datetime to ISO string for MongoDB
+    doc = contact_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    
+    _ = await db.contact_submissions.insert_one(doc)
+    return contact_obj
+
+@api_router.get("/contact", response_model=List[ContactSubmission])
+async def get_contact_submissions():
+    # Exclude MongoDB's _id field from the query results
+    submissions = await db.contact_submissions.find({}, {"_id": 0}).to_list(1000)
+    
+    # Convert ISO string timestamps back to datetime objects
+    for submission in submissions:
+        if isinstance(submission['timestamp'], str):
+            submission['timestamp'] = datetime.fromisoformat(submission['timestamp'])
+    
+    return submissions
+
+# Distributor Inquiry Endpoints
+@api_router.post("/distributors", response_model=DistributorInquiry)
+async def submit_distributor_inquiry(input: DistributorInquiryCreate):
+    inquiry_dict = input.model_dump()
+    inquiry_obj = DistributorInquiry(**inquiry_dict)
+    
+    # Convert to dict and serialize datetime to ISO string for MongoDB
+    doc = inquiry_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    
+    _ = await db.distributor_inquiries.insert_one(doc)
+    return inquiry_obj
+
+@api_router.get("/distributors", response_model=List[DistributorInquiry])
+async def get_distributor_inquiries():
+    # Exclude MongoDB's _id field from the query results
+    inquiries = await db.distributor_inquiries.find({}, {"_id": 0}).to_list(1000)
+    
+    # Convert ISO string timestamps back to datetime objects
+    for inquiry in inquiries:
+        if isinstance(inquiry['timestamp'], str):
+            inquiry['timestamp'] = datetime.fromisoformat(inquiry['timestamp'])
+    
+    return inquiries
+
 # Include the router in the main app
 app.include_router(api_router)
 
