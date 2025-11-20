@@ -60,7 +60,7 @@ async def send_email(
         logger.error(f"Timeout sending email to {to_email}")
         return False
     except requests.exceptions.HTTPError as e:
-        logger.error(f"HTTP error sending email: {e.response.text}")
+        logger.error(f"HTTP error sending email: Status {e.response.status_code} - {e.response.text}")
         return False
     except Exception as e:
         logger.error(f"Failed to send email to {to_email}: {str(e)}")
