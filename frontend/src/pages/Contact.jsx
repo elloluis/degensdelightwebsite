@@ -35,11 +35,11 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await mockContactSubmit(formData);
+      const response = await axios.post(`${BACKEND_URL}/api/contact`, formData);
       
       toast({
         title: "Message Sent!",
-        description: result.message,
+        description: "Thank you for contacting us! We'll get back to you within 24-48 hours.",
       });
 
       // Reset form
@@ -51,6 +51,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Contact form error:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
