@@ -135,6 +135,21 @@ backend:
           agent: "testing"
           comment: "COMPREHENSIVE TESTING COMPLETED: ✅ POST /api/distributors works with all fields and handles empty optional fields (currentBrands, message). ✅ All businessType values tested successfully: distributor, bar, restaurant, retailer, other. ✅ GET /api/distributors retrieves all inquiries with correct timestamp format. ✅ Validation correctly returns 422 for completely missing required fields. ✅ MongoDB storage verified - data persists correctly in distributor_inquiries collection with UUID and timestamp."
 
+  - task: "Email notifications for form submissions"
+    implemented: true
+    working: false
+    file: "/app/backend/email_service.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Implemented email service using aiosmtplib with Google Workspace SMTP. Both contact and distributor forms send email notifications to info@degensdelight.com in background tasks. Uses HTML and plain text email formats."
+        - working: false
+          agent: "testing"
+          comment: "EMAIL AUTHENTICATION FAILURE: ✅ API endpoints work perfectly (200 responses, data stored in MongoDB). ❌ Email sending fails with Google SMTP error '535 5.7.8 Username and Password not accepted'. Backend logs confirm email attempts are made but authentication is rejected. Google Workspace requires App Password instead of regular password for SMTP. Current credentials: info@degensdelight.com with password 'Angel2004!' - this needs to be replaced with an App Password generated from Google Workspace admin console."
+
 frontend:
   - task: "Contact form integration"
     implemented: true
