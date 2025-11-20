@@ -9,7 +9,7 @@ import About from './pages/About';
 import Product from './pages/Product';
 import Contact from './pages/Contact';
 import Distributors from './pages/Distributors';
-import { Toaster } from './components/ui/sonner';
+import { Toaster } from './components/ui/toaster';
 
 function App() {
   const [isAgeVerified, setIsAgeVerified] = useState(false);
