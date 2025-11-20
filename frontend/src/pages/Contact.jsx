@@ -5,9 +5,12 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
-import { mockContactSubmit, brandInfo } from '../mock';
+import { brandInfo } from '../mock';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import ProductLogo from '../components/ProductLogo';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Contact = () => {
   const { toast } = useToast();
