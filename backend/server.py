@@ -113,7 +113,7 @@ async def get_status_checks():
 
 # Contact Form Endpoints
 @api_router.post("/contact", response_model=ContactSubmission)
-async def submit_contact_form(input: ContactSubmissionCreate):
+async def submit_contact_form(input: ContactSubmissionCreate, background_tasks: BackgroundTasks):
     contact_dict = input.model_dump()
     contact_obj = ContactSubmission(**contact_dict)
     
@@ -122,6 +122,54 @@ async def submit_contact_form(input: ContactSubmissionCreate):
     doc['timestamp'] = doc['timestamp'].isoformat()
     
     _ = await db.contact_submissions.insert_one(doc)
+    
+    # Send email notification in background
+    notification_email = os.environ.get('NOTIFICATION_EMAIL', 'info@degensdelight.com')
+    
+    html_body = f"""
+    <html>
+    <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #DC2626;">New Contact Form Submission - Degen's Delight</h2>
+        <hr style="border: 1px solid #DC2626;">
+        <p><strong>From:</strong> {input.name}</p>
+        <p><strong>Email:</strong> <a href="mailto:{input.email}">{input.email}</a></p>
+        <p><strong>Phone:</strong> {input.phone if input.phone else "Not provided"}</p>
+        <p><strong>Subject:</strong> {input.subject}</p>
+        <hr>
+        <p><strong>Message:</strong></p>
+        <p style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #DC2626;">
+            {input.message.replace(chr(10), '<br>')}
+        </p>
+        <hr>
+        <p style="font-size: 12px; color: #666;">
+            Submitted on: {contact_obj.timestamp.strftime('%Y-%m-%d %H:%M:%S')} UTC
+        </p>
+    </body>
+    </html>
+    """
+    
+    plain_text = f"""
+New Contact Form Submission - Degen's Delight
+
+From: {input.name}
+Email: {input.email}
+Phone: {input.phone if input.phone else "Not provided"}
+Subject: {input.subject}
+
+Message:
+{input.message}
+
+Submitted on: {contact_obj.timestamp.strftime('%Y-%m-%d %H:%M:%S')} UTC
+    """
+    
+    background_tasks.add_task(
+        send_email,
+        to_email=notification_email,
+        subject=f"New Contact: {input.subject}",
+        html_body=html_body,
+        plain_text_body=plain_text
+    )
+    
     return contact_obj
 
 @api_router.get("/contact", response_model=List[ContactSubmission])
