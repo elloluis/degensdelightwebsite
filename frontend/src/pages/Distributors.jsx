@@ -55,11 +55,11 @@ const Distributors = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await mockDistributorSubmit(formData);
+      const response = await axios.post(`${BACKEND_URL}/api/distributors`, formData);
       
       toast({
         title: "Inquiry Submitted!",
-        description: result.message,
+        description: "Thank you for your interest! Our distribution team will contact you within 24 hours.",
       });
 
       // Reset form
@@ -74,6 +74,7 @@ const Distributors = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Distributor form error:', error);
       toast({
         title: "Error",
         description: "Failed to submit inquiry. Please try again.",
