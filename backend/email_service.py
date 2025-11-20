@@ -43,6 +43,7 @@ async def send_email(
             data["text"] = plain_text_body
         
         # Send email via Mailgun API
+        logger.info(f"Sending email to {to_email} via Mailgun API: {endpoint}")
         response = requests.post(
             endpoint,
             auth=("api", api_key),
