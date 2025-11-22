@@ -32,7 +32,7 @@ const Product = () => {
             </div>
             <div>
               <img 
-                src="/can-transparent.png" 
+                src="/can-transparent-v2.png" 
                 alt="Degen's Delight Cranberry Vodka RTD Can - 12 FL OZ"
                 className="w-full max-w-md mx-auto h-auto"
               />
