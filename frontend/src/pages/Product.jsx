@@ -50,7 +50,7 @@ const Product = () => {
           </div>
           <div className="max-w-2xl mx-auto">
             <img 
-              src="/carton-transparent.png" 
+              src="/carton-final.png" 
               alt="Degen's Delight 6-Pack Carton - Cranberry Vodka RTD"
               className="w-full h-auto"
             />
