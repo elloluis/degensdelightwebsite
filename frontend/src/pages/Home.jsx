@@ -20,6 +20,13 @@ const Home = () => {
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
+            <div className="mb-8">
+              <img 
+                src="/logo-transparent.png" 
+                alt="Degen's Delight Logo"
+                className="w-48 md:w-64 h-auto mx-auto"
+              />
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
               Drink <span className="text-red-500">Degen's Delight</span>
             </h1>
