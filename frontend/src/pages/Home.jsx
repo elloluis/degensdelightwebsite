@@ -22,7 +22,7 @@ const Home = () => {
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
               <img 
-                src="/logo-transparent.png" 
+                src="/logo-transparent-v2.png" 
                 alt="Degen's Delight Logo"
                 className="w-48 md:w-64 h-auto mx-auto"
               />
