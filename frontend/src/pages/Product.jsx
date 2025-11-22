@@ -44,7 +44,13 @@ const Product = () => {
             <h2 className="text-4xl font-bold mb-4">Available in Convenient 6-Packs</h2>
             <p className="text-xl text-gray-600">Premium packaging for premium quality</p>
           </div>
-          <ProductCarton />
+          <div className="max-w-2xl mx-auto">
+            <img 
+              src="/carton-image.jpg" 
+              alt="Degen's Delight 6-Pack Carton - Cranberry Vodka RTD"
+              className="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </div>
         </div>
       </section>
 
