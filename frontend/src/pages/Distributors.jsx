@@ -164,7 +164,7 @@ const Distributors = () => {
               </div>
               <div>
                 <img 
-                  src="/carton-final.png" 
+                  src="/carton-final-v2.png" 
                   alt="Degen's Delight 6-Pack Carton"
                   className="w-full h-auto"
                 />
