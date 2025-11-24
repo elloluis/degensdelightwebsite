@@ -51,6 +51,7 @@ function App() {
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/stores" element={<StoreManagement />} />
+            <Route path="/admin/submissions" element={<SubmissionsViewer />} />
             
             {/* Public Routes (with header/footer) */}
             <Route path="*" element={
