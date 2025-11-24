@@ -277,6 +277,160 @@ async def get_distributor_inquiries():
     return inquiries
 
 # Include the router in the main app
+# Dependency to verify admin token
+async def verify_admin_token(authorization: str = Header(None)):
+    if not authorization:
+        raise HTTPException(status_code=401, detail="Missing authorization header")
+    
+    try:
+        token = authorization.replace("Bearer ", "")
+        payload = verify_token(token)
+        if not payload:
+            raise HTTPException(status_code=401, detail="Invalid token")
+        return payload
+    except Exception as e:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+# Admin Authentication Endpoints
+@api_router.post("/admin/login", response_model=AdminLoginResponse)
+async def admin_login(login_data: AdminLogin):
+    # Find admin user
+    admin = await db.admin_users.find_one({"email": login_data.email}, {"_id": 0})
+    
+    if not admin or not verify_password(login_data.password, admin["password_hash"]):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    # Create access token
+    access_token = create_access_token(data={"sub": admin["email"]})
+    
+    return AdminLoginResponse(
+        success=True,
+        token=access_token,
+        email=admin["email"]
+    )
+
+# Store Location Endpoints
+@api_router.post("/admin/stores", response_model=StoreLocation)
+async def create_store(store: StoreLocationCreate, admin: dict = Depends(verify_admin_token)):
+    store_dict = store.model_dump()
+    store_obj = StoreLocation(**store_dict)
+    
+    doc = store_obj.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    doc['updated_at'] = doc['updated_at'].isoformat()
+    
+    await db.store_locations.insert_one(doc)
+    return store_obj
+
+@api_router.get("/admin/stores", response_model=List[StoreLocation])
+async def get_all_stores_admin(admin: dict = Depends(verify_admin_token)):
+    stores = await db.store_locations.find({}, {"_id": 0}).to_list(1000)
+    
+    for store in stores:
+        if isinstance(store.get('created_at'), str):
+            store['created_at'] = datetime.fromisoformat(store['created_at'])
+        if isinstance(store.get('updated_at'), str):
+            store['updated_at'] = datetime.fromisoformat(store['updated_at'])
+    
+    return stores
+
+@api_router.get("/stores", response_model=List[StoreLocation])
+async def get_all_stores_public():
+    """Public endpoint for store locator"""
+    stores = await db.store_locations.find({}, {"_id": 0}).to_list(1000)
+    
+    for store in stores:
+        if isinstance(store.get('created_at'), str):
+            store['created_at'] = datetime.fromisoformat(store['created_at'])
+        if isinstance(store.get('updated_at'), str):
+            store['updated_at'] = datetime.fromisoformat(store['updated_at'])
+    
+    return stores
+
+@api_router.put("/admin/stores/{store_id}", response_model=StoreLocation)
+async def update_store(store_id: str, store_update: StoreLocationUpdate, admin: dict = Depends(verify_admin_token)):
+    # Get existing store
+    existing_store = await db.store_locations.find_one({"id": store_id}, {"_id": 0})
+    if not existing_store:
+        raise HTTPException(status_code=404, detail="Store not found")
+    
+    # Update fields
+    update_data = store_update.model_dump(exclude_unset=True)
+    update_data['updated_at'] = datetime.now(timezone.utc).isoformat()
+    
+    await db.store_locations.update_one({"id": store_id}, {"$set": update_data})
+    
+    # Get updated store
+    updated_store = await db.store_locations.find_one({"id": store_id}, {"_id": 0})
+    if isinstance(updated_store.get('created_at'), str):
+        updated_store['created_at'] = datetime.fromisoformat(updated_store['created_at'])
+    if isinstance(updated_store.get('updated_at'), str):
+        updated_store['updated_at'] = datetime.fromisoformat(updated_store['updated_at'])
+    
+    return StoreLocation(**updated_store)
+
+@api_router.delete("/admin/stores/{store_id}")
+async def delete_store(store_id: str, admin: dict = Depends(verify_admin_token)):
+    result = await db.store_locations.delete_one({"id": store_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Store not found")
+    return {"success": True, "message": "Store deleted"}
+
+# Analytics Endpoints
+@api_router.post("/track/pageview")
+async def track_pageview(request: Request, page_path: str, visitor_id: str):
+    """Track a page view"""
+    pageview = {
+        "id": str(uuid.uuid4()),
+        "page_path": page_path,
+        "visitor_id": visitor_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "user_agent": request.headers.get("user-agent", ""),
+        "referrer": request.headers.get("referer", "")
+    }
+    
+    await db.page_views.insert_one(pageview)
+    return {"success": True}
+
+@api_router.get("/admin/analytics/summary")
+async def get_analytics_summary(admin: dict = Depends(verify_admin_token)):
+    """Get analytics summary for admin dashboard"""
+    
+    # Total page views
+    total_views = await db.page_views.count_documents({})
+    
+    # Unique visitors
+    unique_visitors = len(await db.page_views.distinct("visitor_id"))
+    
+    # Total contact submissions
+    total_contacts = await db.contact_submissions.count_documents({})
+    
+    # Total distributor inquiries
+    total_distributors = await db.distributor_inquiries.count_documents({})
+    
+    # Recent page views (last 7 days)
+    seven_days_ago = datetime.now(timezone.utc) - timedelta(days=7)
+    recent_views = await db.page_views.count_documents({
+        "timestamp": {"$gte": seven_days_ago.isoformat()}
+    })
+    
+    # Most visited pages
+    pipeline = [
+        {"$group": {"_id": "$page_path", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+        {"$limit": 10}
+    ]
+    top_pages = await db.page_views.aggregate(pipeline).to_list(10)
+    
+    return {
+        "total_views": total_views,
+        "unique_visitors": unique_visitors,
+        "total_contacts": total_contacts,
+        "total_distributors": total_distributors,
+        "recent_views": recent_views,
+        "top_pages": [{"page": p["_id"], "views": p["count"]} for p in top_pages]
+    }
+
 app.include_router(api_router)
 
 app.add_middleware(
