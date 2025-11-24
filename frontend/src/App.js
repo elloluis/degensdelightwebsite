@@ -38,16 +38,12 @@ function App() {
     );
   }
 
-  if (!isAgeVerified) {
-    return <AgeVerification onVerified={setIsAgeVerified} />;
-  }
-
   return (
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            {/* Admin Routes (no header/footer) */}
+            {/* Admin Routes (no age verification needed) */}
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/stores" element={<StoreManagement />} />
