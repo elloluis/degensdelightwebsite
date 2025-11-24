@@ -49,20 +49,24 @@ function App() {
             <Route path="/admin/stores" element={<StoreManagement />} />
             <Route path="/admin/submissions" element={<SubmissionsViewer />} />
             
-            {/* Public Routes (with header/footer) */}
+            {/* Public Routes (with header/footer and age verification) */}
             <Route path="*" element={
-              <>
-                <Header />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/product" element={<Product />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/distributors" element={<Distributors />} />
-                  <Route path="/store-locator" element={<StoreLocator />} />
-                </Routes>
-                <Footer />
-              </>
+              isAgeVerified ? (
+                <>
+                  <Header />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/product" element={<Product />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/distributors" element={<Distributors />} />
+                    <Route path="/store-locator" element={<StoreLocator />} />
+                  </Routes>
+                  <Footer />
+                </>
+              ) : (
+                <AgeVerification onVerified={setIsAgeVerified} />
+              )
             } />
           </Routes>
           <Toaster />
