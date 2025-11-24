@@ -100,6 +100,16 @@ const Footer = () => {
               <strong>GOVERNMENT WARNING:</strong> (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.
             </p>
           </div>
+          
+          {/* Admin Link - Small at the very bottom */}
+          <div className="mt-4 text-center">
+            <Link 
+              to="/admin/login" 
+              className="text-[10px] text-gray-700 hover:text-gray-500 transition-colors"
+            >
+              Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
