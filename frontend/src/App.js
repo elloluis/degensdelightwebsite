@@ -13,6 +13,7 @@ import StoreLocator from './pages/StoreLocator';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import StoreManagement from './pages/admin/StoreManagement';
+import SubmissionsViewer from './pages/admin/SubmissionsViewer';
 import { Toaster } from './components/ui/toaster';
 import { AuthProvider } from './context/AuthContext';
 
