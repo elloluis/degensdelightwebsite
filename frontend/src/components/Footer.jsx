@@ -105,9 +105,9 @@ const Footer = () => {
           <div className="mt-4 text-center">
             <Link 
               to="/admin/login" 
-              className="text-[10px] text-gray-700 hover:text-gray-500 transition-colors"
+              className="text-xs text-gray-600 hover:text-gray-400 transition-colors underline"
             >
-              Admin
+              Admin Portal
             </Link>
           </div>
         </div>
