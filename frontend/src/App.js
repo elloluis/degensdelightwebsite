@@ -44,16 +44,31 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/distributors" element={<Distributors />} />
-        </Routes>
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <Routes>
+            {/* Admin Routes (no header/footer) */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/stores" element={<StoreManagement />} />
+            
+            {/* Public Routes (with header/footer) */}
+            <Route path="*" element={
+              <>
+                <Header />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/product" element={<Product />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/distributors" element={<Distributors />} />
+                  <Route path="/store-locator" element={<StoreLocator />} />
+                </Routes>
+                <Footer />
+              </>
+            } />
+          </Routes>
+          <Toaster />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
