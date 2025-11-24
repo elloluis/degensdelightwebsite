@@ -9,7 +9,12 @@ import About from './pages/About';
 import Product from './pages/Product';
 import Contact from './pages/Contact';
 import Distributors from './pages/Distributors';
+import StoreLocator from './pages/StoreLocator';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import StoreManagement from './pages/admin/StoreManagement';
 import { Toaster } from './components/ui/toaster';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   const [isAgeVerified, setIsAgeVerified] = useState(false);
