@@ -23,6 +23,8 @@ const StoreLocator = () => {
   const [filteredStores, setFilteredStores] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [selectedStore, setSelectedStore] = useState(null);
+  const [mapCenter, setMapCenter] = useState(defaultCenter);
 
   useEffect(() => {
     fetchStores();
