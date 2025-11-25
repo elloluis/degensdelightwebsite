@@ -110,6 +110,54 @@ const StoreLocator = () => {
               </p>
             </div>
 
+            {/* Google Map */}
+            <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
+              <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
+                <GoogleMap
+                  mapContainerStyle={mapContainerStyle}
+                  center={mapCenter}
+                  zoom={filteredStores.length === 1 ? 14 : 10}
+                >
+                  {filteredStores.map((store) => (
+                    <Marker
+                      key={store.id}
+                      position={{ lat: store.latitude, lng: store.longitude }}
+                      onClick={() => setSelectedStore(store)}
+                      title={store.name}
+                    />
+                  ))}
+
+                  {selectedStore && (
+                    <InfoWindow
+                      position={{ lat: selectedStore.latitude, lng: selectedStore.longitude }}
+                      onCloseClick={() => setSelectedStore(null)}
+                    >
+                      <div className="p-2">
+                        <h3 className="font-bold text-lg mb-1">{selectedStore.name}</h3>
+                        <p className="text-sm text-gray-600">{selectedStore.address}</p>
+                        <p className="text-sm text-gray-600">
+                          {selectedStore.city}, {selectedStore.state} {selectedStore.zip_code}
+                        </p>
+                        {selectedStore.phone && (
+                          <p className="text-sm text-gray-600 mt-1">📞 {selectedStore.phone}</p>
+                        )}
+                        <a
+                          href={`https://www.google.com/maps?q=${selectedStore.latitude},${selectedStore.longitude}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-red-600 text-sm font-semibold mt-2 inline-block"
+                        >
+                          Get Directions →
+                        </a>
+                      </div>
+                    </InfoWindow>
+                  )}
+                </GoogleMap>
+              </LoadScript>
+            </div>
+
+            {/* Store List */}
+            <h2 className="text-2xl font-bold mb-4 text-center">Store List</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredStores.map((store) => (
                 <Card key={store.id} className="p-6 hover:shadow-lg transition-shadow">
