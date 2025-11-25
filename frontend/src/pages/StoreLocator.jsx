@@ -48,6 +48,14 @@ const StoreLocator = () => {
       const response = await axios.get(`${BACKEND_URL}/api/stores`);
       setStores(response.data);
       setFilteredStores(response.data);
+      
+      // Center map on first store if available
+      if (response.data.length > 0) {
+        setMapCenter({
+          lat: response.data[0].latitude,
+          lng: response.data[0].longitude
+        });
+      }
     } catch (error) {
       console.error('Failed to fetch stores:', error);
     } finally {
