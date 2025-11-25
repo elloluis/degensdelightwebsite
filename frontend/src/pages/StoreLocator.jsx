@@ -3,8 +3,20 @@ import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import axios from 'axios';
 import { MapPin, Phone, Clock, Search } from 'lucide-react';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
+const mapContainerStyle = {
+  width: '100%',
+  height: '600px'
+};
+
+const defaultCenter = {
+  lat: 25.7617, // Miami, FL
+  lng: -80.1918
+};
 
 const StoreLocator = () => {
   const [stores, setStores] = useState([]);
